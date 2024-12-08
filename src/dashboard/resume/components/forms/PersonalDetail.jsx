@@ -2,12 +2,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ResumeInfoContext } from '@/context/ResumeinfoContext';
 import React, { useContext, useEffect, useState } from 'react'
-import { data, useParams } from 'react-router-dom';
-import GlobalApi from './../../../../../service/GlobalApi'
+import { useParams } from 'react-router-dom';
+import GlobalApi from '../../../../../service/GlobalApi'
 import { LoaderCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
-const PersonalDetails = ({enabledNext}) => {
+const PersonalDetail = ({enabledNext}) => {
 
   const params = useParams();
   const {resumeInfo , setResumeInfo} = useContext(ResumeInfoContext);
@@ -19,16 +19,20 @@ const PersonalDetails = ({enabledNext}) => {
   },[])
 
   const handleInputChange = (e) =>{
-    enabledNext(false);
+    enabledNext(true);
     const {name,value} = e.target;
+
     setFormData({
       ...formData,
       [name]:value
-    })
+    });
+    
     setResumeInfo({
       ...resumeInfo , [name]:value
-    })
+    });
   }
+
+
   const onSave = (e)=>{
     e.preventDefault();
     setLoading(true);
@@ -57,27 +61,27 @@ const PersonalDetails = ({enabledNext}) => {
         <div className='grid grid-cols-2 mt-5 gap-3'>
           <div>
             <label className='text-sm'>First Name</label>
-            <Input name="firstName" onChange={handleInputChange} defaultValue={resumeInfo?.firstName} required/>
+            <Input name="firstName" onChange={handleInputChange}  required/>
           </div>
           <div>
             <label className='text-sm'>Last Name</label>
-            <Input name="lastName" onChange={handleInputChange} defaultValue={resumeInfo?.lastName} required/>
+            <Input name="lastName" onChange={handleInputChange}  required/>
           </div>
           <div className='col-span-2'>
             <label className='text-sm'>Job Title</label>
-            <Input name="jobTitle" onChange={handleInputChange} defaultValue={resumeInfo?.jobTitle} required/>
+            <Input name="jobTitle" onChange={handleInputChange}  required/>
           </div>
           <div className='col-span-2'>
             <label className='text-sm'>Address</label>
-            <Input name="address" onChange={handleInputChange} defaultValue={resumeInfo?.address} required/>
+            <Input name="address" onChange={handleInputChange}  required/>
           </div>
           <div>
             <label className='text-sm'>Phone</label>
-            <Input name="phone" onChange={handleInputChange} defaultValue={resumeInfo?.phone} required/>
+            <Input name="phone" onChange={handleInputChange}  required/>
           </div>
           <div>
             <label className='text-sm'>Email</label>
-            <Input name="email" onChange={handleInputChange} defaultValue={resumeInfo?.email} required/>
+            <Input name="email" onChange={handleInputChange}  required/>
           </div>
         </div>
           <div className='mt-3 flex justify-end'>
@@ -89,4 +93,4 @@ const PersonalDetails = ({enabledNext}) => {
   )
 }
 
-export default PersonalDetails
+export default PersonalDetail
