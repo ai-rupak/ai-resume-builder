@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight, LayoutGrid } from 'lucide-react'
 import PersonalDetail from './forms/PersonalDetail';
 import Summary from './forms/Summary';
+import Experience from './forms/Experience';
 
 const FormSection = () => {
 
@@ -20,7 +21,10 @@ const FormSection = () => {
       </div>
       
       {activeFormIndex==1 ? < PersonalDetail enabledNext={(v)=>setEnabledNext(v)} /> :activeFormIndex==2
-      ? <Summary enabledNext={(v)=>setEnabledNext(v)} />:null}
+      ? <Summary enabledNext={(v)=>setEnabledNext(v)} />:
+      activeFormIndex == 3 ? 
+      <Experience/>
+      :null}
 
     </div>
 
