@@ -77,7 +77,7 @@ const Summary = ({enabledNext}) => {
         {aiGeneratedSummaryList && <div>
             <h2 className='font-bold text-lg'>Suggestions </h2>
             {aiGeneratedSummaryList.map((item,index)=>(
-                <div>
+                <div key={index}>
                     <h2 className='font-bold my-1'>Level: {item?.experienceLevel}</h2>
                     <p>{item?.summary}</p>
                 </div>
