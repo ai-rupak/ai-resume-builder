@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input';
 import { ResumeInfoContext } from '@/context/ResumeinfoContext';
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import GlobalApi from '../../../../../service/GlobalApi'
+import GlobalApi from '../../../../../service/GlobalApi.js'
 import { LoaderCircle } from 'lucide-react';
 import { toast } from 'sonner';
 
