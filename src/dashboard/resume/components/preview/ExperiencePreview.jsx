@@ -13,7 +13,8 @@ const ExperiencePreview = ({resumeInfo}) => {
           <h2 className='text-xs flex justify-between'>{experience?.companyName},{experience?.city},{experience?.state}
             <span>{experience?.startDate} - {experience?.currentlyWorking? 'Present' : experience?.endDate} </span> 
             </h2>
-            <p className='text-xs my-2'>{experience?.workSummary} </p>
+            {/* <p className='text-xs my-2'>{experience?.workSummary} </p> */}
+            <div className='text-xs my-2' dangerouslySetInnerHTML={{__html:experience?.workSummary}}/>
         </div>
       ))}
     </div>

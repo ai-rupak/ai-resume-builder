@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, LayoutGrid } from 'lucide-react'
 import PersonalDetail from './forms/PersonalDetail';
 import Summary from './forms/Summary';
 import Experience from './forms/Experience';
+import Education from './forms/Education';
 
 const FormSection = () => {
 
@@ -24,7 +25,9 @@ const FormSection = () => {
       ? <Summary enabledNext={(v)=>setEnabledNext(v)} />:
       activeFormIndex == 3 ? 
       <Experience/>
-      :null}
+      :activeFormIndex== 4 ?
+      <Education/>: null  
+    }
 
     </div>
 
