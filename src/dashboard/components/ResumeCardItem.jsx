@@ -1,18 +1,139 @@
-import { Notebook } from 'lucide-react'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import {
+  ArrowBigDown,
+  Download,
+  Eye,
+  Loader2Icon,
+  MoreVertical,
+  Notebook,
+  Pen,
+  Trash,
+} from "lucide-react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const ResumeCardItem = ({resume}) => {
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import GlobalApi from "./../../../service/GlobalApi";
+import { toast } from "sonner";
+
+const ResumeCardItem = ({ resume ,refreshData}) => {
+  const navigate = useNavigate();
+  const [openAlert, setOpenAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const onDelete = () => {
+    setLoading(true);
+    GlobalApi.DeleteResume(resume.documentId).then((resp) => {
+      console.log(resp);
+      toast.success("Resume Deleted Successfully");
+      refreshData();
+      setLoading(false);
+      setOpenAlert(false);
+      // navigate("/dashboard");
+    },(error)=>{
+      console.log(error);
+      toast.error("Error while deleting resume");
+      setLoading(false);
+    });
+  }
   return (
-    <Link to={'/dashboard/resume/'+resume.documentId+"/edit"}>
-    <div >
-        <div className='p-14 bg-secondary flex items-center justify-center h-[280px] border border-primary rounded-lg hover:scale-105 transition-all hover:shadow-md shadow-primary'>
-            <Notebook/>
+    <div>
+      <Link to={"/dashboard/resume/" + resume.documentId + "/edit"}>
+        <div>
+          <div
+            className="p-14 bg-gradient-to-b
+          from-pink-100 via-purple-200 to-blue-200
+        h-[280px] 
+          rounded-t-lg border-t-4"
+            style={{
+              borderColor: resume?.themeColor,
+            }}
+          >
+            <div
+              className="flex 
+        items-center justify-center h-[180px] "
+            >
+              {/* <Notebook/> */}
+              <img src="/cv.png" width={80} height={80} />
+            </div>
+          </div>
         </div>
-        <h2>{resume.title} </h2>
-    </div>
-    </Link>
-  )
-}
+      </Link>
+      <div
+        className="border p-3 flex justify-between  text-white rounded-b-lg shadow-lg"
+        style={{
+          background: resume?.themeColor,
+        }}
+      >
+        <h2 className="text-sm text-black">{resume.title}</h2>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <MoreVertical className="h-4 w-4 cursor-pointer text-black" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem
+              onClick={() =>
+                navigate("/dashboard/resume/" + resume.documentId + "/edit")
+              }
+            >
+              <Pen />
+              Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                navigate("/my-resume/" + resume.documentId + "/view")
+              }
+            >
+              <Eye />
+              View
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() =>
+                navigate("/my-resume/" + resume.documentId + "/view")
+              }
+            >
+              <Download />
+              Download
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>setOpenAlert(true)}>
+              <Trash />
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
 
-export default ResumeCardItem
+        <AlertDialog open={openAlert}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={()=>setOpenAlert(false)}>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={onDelete} disabled={loading}>{loading?<Loader2Icon className="animate-spin"/>:'Delete'}</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </div>
+    </div>
+  );
+};
+
+export default ResumeCardItem;

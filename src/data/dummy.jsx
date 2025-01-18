@@ -5,7 +5,7 @@ export default{
     address: "123 Main Street, Springfield, USA",
     phone: "+1 234 567 890",
     email: "john.doe@example.com",
-    themeColor: "#4CAF50",
+    themeColor: "#1D63EC",
     summary:
       "A passionate and detail-oriented software engineer with 5+ years of experience in developing scalable web applications and working across the full stack. Skilled in JavaScript, React, and Node.js, with a strong foundation in problem-solving and teamwork.",
       experience: [

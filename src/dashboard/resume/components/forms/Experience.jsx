@@ -3,6 +3,10 @@ import { Input } from "@/components/ui/input";
 import React, { useState, useEffect, useContext } from "react";
 import RichTextEditor from "../RichTextEditor";
 import { ResumeInfoContext } from "@/context/ResumeinfoContext";
+import { LoaderCircle } from "lucide-react";
+import GlobalApi from "./../../../../../service/GlobalApi";
+import { toast } from "sonner";
+import { useParams } from "react-router-dom";
 
 const formField = {
   title: "",
@@ -14,6 +18,8 @@ const formField = {
   workSummary: "",
 };
 const Experience = () => {
+  const params=useParams();
+  const [loading, setLoading] = useState(false);
   const [experienceList, setExperienceList] = useState([formField]);
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
   const handleChange = (index, event) => {
@@ -31,13 +37,37 @@ const Experience = () => {
 
   const handleRichTextEditor = (e, name, index) => {
     const newEntries = experienceList.slice();
+    // const {name,value} = e.target;
     newEntries[index][name] = e.target.value;
     setExperienceList(newEntries);
   };
+
+
   useEffect(() => {
     setResumeInfo({ ...resumeInfo, experience: experienceList });
   }, [experienceList]);
 
+  const onSave=()=>{
+    setLoading(true)
+    const data={
+        data:{
+            Experience:experienceList.map(({ id, ...rest }) => rest)
+        }
+    }
+
+     console.log(experienceList);
+
+    GlobalApi.UpdateResumeDetail(params?.resumeId,data).then(res=>{
+        console.log(res);
+        setLoading(false);
+        toast('Details updated !')
+    },(error)=>{
+        setLoading(false);
+    })
+  }
+  useEffect(()=>{
+    resumeInfo&&setExperienceList(resumeInfo?.Experience)
+  },[resumeInfo])
   return (
     <div className="p-5 shadow-lg rounded-sm border-t-primary border-t-4 mt-10">
       <h2 className="font-bold text-lg">Professional Experience</h2>
@@ -51,6 +81,8 @@ const Experience = () => {
                 <Input
                   onChange={(event) => handleChange(index, event)}
                   name="title"
+                  
+                  defaultValue={item?.title}
                 />
               </div>
               <div>
@@ -58,6 +90,8 @@ const Experience = () => {
                 <Input
                   onChange={(event) => handleChange(index, event)}
                   name="companyName"
+                  
+                  defaultValue={item?.companyName}
                 />
               </div>
               <div>
@@ -65,6 +99,7 @@ const Experience = () => {
                 <Input
                   onChange={(event) => handleChange(index, event)}
                   name="city"
+                  defaultValue={item?.city}
                 />
               </div>
               <div>
@@ -72,6 +107,7 @@ const Experience = () => {
                 <Input
                   onChange={(event) => handleChange(index, event)}
                   name="state"
+                  defaultValue={item?.state}
                 />
               </div>
               <div>
@@ -80,6 +116,7 @@ const Experience = () => {
                   onChange={(event) => handleChange(index, event)}
                   name="startDate"
                   type="date"
+                  defaultValue={item?.startDate}
                 />
               </div>
               <div>
@@ -88,13 +125,15 @@ const Experience = () => {
                   onChange={(event) => handleChange(index, event)}
                   name="endDate"
                   type="date"
+                  defaultValue={item?.endDate}
                 />
               </div>
               <div className="col-span-2">
                 <RichTextEditor
                   index={index}
+                  defaultValue={item?.workSummary}
                   onRichTextEditorChange={(event) =>
-                    handleRichTextEditor(event, "workSummary", index)
+                    handleRichTextEditor(event, 'workSummary', index)
                   }
                 />
               </div>
@@ -119,7 +158,9 @@ const Experience = () => {
             - Remove
           </Button>
         </div>
-        <Button>Save</Button>
+        <Button disabled={loading} onClick={()=>onSave()}>
+            {loading?<LoaderCircle className='animate-spin' />:'Save'}    
+        </Button>
       </div>
     </div>
   );
