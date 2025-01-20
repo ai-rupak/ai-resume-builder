@@ -25,7 +25,7 @@ const FormSection = () => {
         
         </div>
           <div className='flex gap-2'>
-            {activeFormIndex>1 && <Button onClick={()=>setActiveFormIndex(activeFormIndex-1)} size="sm" ><ArrowLeft/></Button>}
+            {activeFormIndex>1 && <Button onClick={()=>setActiveFormIndex(activeFormIndex-1)} size="sm" ><ArrowLeft/>Prev</Button>}
             <Button disabled={!enabledNext} onClick={()=>setActiveFormIndex(activeFormIndex+1)} className='flex gap-2' size="sm" >Next <ArrowRight/> </Button>
           </div>
       </div>

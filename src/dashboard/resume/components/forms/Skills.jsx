@@ -64,7 +64,7 @@ const Skills = () => {
       <p>Add your top professional skils</p>
       <div>
         {skillsList.map((item,index)=>(
-            <div className='flex justify-between mb-2 border rounded-lg p-3 '>
+            <div className='flex justify-between mb-2 border rounded-lg p-3 ' key={index}>
                 <div>
                     <label className='text-sm'>Name</label>
                     <Input className="w-full"
