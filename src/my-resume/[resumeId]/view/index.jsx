@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import GlobalApi from './../../../../service/GlobalApi'
 import Header from '@/components/custom'
 import { RWebShare } from 'react-web-share'
+import ResumeApi from './../../../../service/GlobalApi'
 
 function ViewResume() {
 
@@ -16,7 +17,7 @@ function ViewResume() {
         GetResumeInfo();
     },[])
     const GetResumeInfo=()=>{
-        GlobalApi.GetResumeById(resumeId).then(resp=>{
+        ResumeApi.getResumeById(resumeId).then(resp=>{
             console.log(resp.data.data);
             setResumeInfo(resp.data.data);
         })

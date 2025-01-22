@@ -8,8 +8,8 @@ import {
   Pen,
   Trash,
 } from "lucide-react";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+// import React, { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,8 +28,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import GlobalApi from "./../../../service/GlobalApi";
-import { toast } from "sonner";
+import ResumeApi from "./../../../service/GlobalApi";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "react-toastify";
+// import GlobalApi from "./../../../service/GlobalApi";
+
 
 const ResumeCardItem = ({ resume ,refreshData}) => {
   const navigate = useNavigate();
@@ -37,10 +41,10 @@ const ResumeCardItem = ({ resume ,refreshData}) => {
   const [loading, setLoading] = useState(false);
   const onDelete = () => {
     setLoading(true);
-    GlobalApi.DeleteResume(resume.documentId).then((resp) => {
+    ResumeApi.deleteResume(resume.resumeId).then((resp) => {
       console.log(resp);
       toast.success("Resume Deleted Successfully");
-      refreshData();
+      // refreshData();
       setLoading(false);
       setOpenAlert(false);
       // navigate("/dashboard");
@@ -52,16 +56,16 @@ const ResumeCardItem = ({ resume ,refreshData}) => {
   }
   return (
     <div>
-      <Link to={"/dashboard/resume/" + resume.documentId + "/edit"}>
+      <Link to={"/dashboard/resume/" + resume.resumeId + "/edit"}>
         <div>
           <div
             className="p-14 bg-gradient-to-b
           from-pink-100 via-purple-200 to-blue-200
         h-[280px] 
           rounded-t-lg border-t-4"
-            style={{
-              borderColor: resume?.themeColor,
-            }}
+            // style={{
+            //   borderColor: resume?.themeColor,
+            // }}
           >
             <div
               className="flex 
@@ -87,7 +91,7 @@ const ResumeCardItem = ({ resume ,refreshData}) => {
           <DropdownMenuContent>
             <DropdownMenuItem
               onClick={() =>
-                navigate("/dashboard/resume/" + resume.documentId + "/edit")
+                navigate("/dashboard/resume/" + resume.resumeId + "/edit")
               }
             >
               <Pen />
@@ -95,7 +99,7 @@ const ResumeCardItem = ({ resume ,refreshData}) => {
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() =>
-                navigate("/my-resume/" + resume.documentId + "/view")
+                navigate("/my-resume/" + resume.resumeId + "/view")
               }
             >
               <Eye />
@@ -103,7 +107,7 @@ const ResumeCardItem = ({ resume ,refreshData}) => {
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() =>
-                navigate("/my-resume/" + resume.documentId + "/view")
+                navigate("/my-resume/" + resume.resumeId + "/view")
               }
             >
               <Download />
@@ -135,5 +139,28 @@ const ResumeCardItem = ({ resume ,refreshData}) => {
     </div>
   );
 };
+
+// export default ResumeCardItem;
+// import React from 'react';
+// import { Button } from '@/components/ui/button';
+// import { Link } from 'react-router-dom';
+
+// const ResumeCardItem = ({ resume, onClick }) => {
+//   return (
+//     <div
+//       className="p-5 border rounded-lg shadow hover:shadow-md transition-all cursor-pointer"
+//       onClick={onClick}
+//     >
+//       <h3 className="font-bold text-lg">{resume.title}</h3>
+//       {/* <p className="text-sm text-gray-500">{resume.resumeId}</p> */}
+
+//       <Link to={`/dashboard/resume/${resume.resumeId}/edit`}>
+//       <Button variant="outline" className="mt-2">
+//         Edit
+//       </Button>
+//       </Link>
+//     </div>
+//   );
+// };
 
 export default ResumeCardItem;
