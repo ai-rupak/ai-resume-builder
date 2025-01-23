@@ -1,12 +1,16 @@
 import {
   ArrowBigDown,
+  Clock,
+  Copy,
   Download,
+  Edit3,
   Eye,
   Loader2Icon,
   MoreVertical,
   Notebook,
   Pen,
   Trash,
+  Trash2,
 } from "lucide-react";
 // import React, { useState } from "react";
 // import { Link, useNavigate } from "react-router-dom";
@@ -32,59 +36,111 @@ import ResumeApi from "./../../../service/GlobalApi";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
 // import GlobalApi from "./../../../service/GlobalApi";
 
-
-const ResumeCardItem = ({ resume ,refreshData}) => {
+const ResumeCardItem = ({ resume, refreshData }) => {
   const navigate = useNavigate();
   const [openAlert, setOpenAlert] = useState(false);
   const [loading, setLoading] = useState(false);
   const onDelete = () => {
     setLoading(true);
-    ResumeApi.deleteResume(resume.resumeId).then((resp) => {
-      console.log(resp);
-      toast.success("Resume Deleted Successfully");
-      // refreshData();
-      setLoading(false);
-      setOpenAlert(false);
-      // navigate("/dashboard");
-    },(error)=>{
-      console.log(error);
-      toast.error("Error while deleting resume");
-      setLoading(false);
-    });
-  }
+    ResumeApi.deleteResume(resume.resumeId).then(
+      (resp) => {
+        console.log(resp);
+        toast.success("Resume Deleted Successfully");
+        // refreshData();
+        setLoading(false);
+        setOpenAlert(false);
+        // navigate("/dashboard");
+      },
+      (error) => {
+        console.log(error);
+        toast.error("Error while deleting resume");
+        setLoading(false);
+      }
+    );
+  };
   return (
-    <div>
-      <Link to={"/dashboard/resume/" + resume.resumeId + "/edit"}>
+    
+    <div className="border-[#0A1F44] border-[1px] rounded-md p-6 ">
+      <div className="flex justify-between items-center mb-4 hover:bg-gray-100 rounded-md p-2 transition-all duration-300">
         <div>
-          <div
-            className="p-14 bg-gradient-to-b
-          from-pink-100 via-purple-200 to-blue-200
-        h-[280px] 
-          rounded-t-lg border-t-4"
-            // style={{
-            //   borderColor: resume?.themeColor,
-            // }}
-          >
-            <div
-              className="flex 
-        items-center justify-center h-[180px] "
-            >
-              {/* <Notebook/> */}
-              <img src="/cv.png" width={80} height={80} />
-            </div>
-          </div>
+          <p className="text-purple-500 font-medium mb-1">RESUME #</p>
+          <h3 className="text-xl font-medium mb-1">{resume.title}</h3>
+          <p className="text-gray-500 text-sm">Edited 3 hours ago</p>
         </div>
-      </Link>
-      <div
-        className="border p-3 flex justify-between  text-white rounded-b-lg shadow-lg"
-        style={{
-          background: resume?.themeColor,
-        }}
-      >
-        <h2 className="text-sm text-black">{resume.title}</h2>
-        <DropdownMenu>
+        <div>
+          <button className="text-gray-400 px-3 py-1 rounded-md border border-gray-200 text-sm">
+            Add a label
+          </button>
+          <button className="ml-2">
+            <Edit3 className="w-5 h-5 text-gray-400" />
+          </button>
+        </div>
+      </div>
+
+      {/* <div className="mb-6">
+        <img
+          src="/cv.png"
+          alt="Document preview"
+          className="w-full border rounded-lg"
+        />
+      </div> */}
+
+      <div className="space-y-4 hover:bg-slate-100 transition-all duration-300">
+        <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 w-full" onClick={() => navigate("/dashboard/resume/" + resume.resumeId + "/edit")}>
+          <Edit3 className="w-5 h-5 text-gray-400" />
+          <span className="text-gray-600">Edit</span>
+        </button>
+        <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 w-full" onClick={() => navigate("/my-resume/" + resume.resumeId + "/view")}>
+          <Eye className="w-5 h-5 text-gray-400" />
+          <span className="text-gray-600">View</span>
+        </button>
+        <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 w-full" onClick={() => navigate("/my-resume/" + resume.resumeId + "/view")}>
+          <Download className="w-5 h-5 text-gray-400" />
+          <span className="text-gray-600">Download</span>
+        </button>
+        <button className="flex items-center gap-2 text-red-600 hover:text-red-700 w-full" onClick={() => setOpenAlert(true)}>
+          <Trash2 className="w-5 h-5" />
+          <span>Delete</span>
+        </button>
+      </div>
+
+      <div className="flex items-center justify-between mt-6 pt-6 border-t">
+        <div className="flex items-center gap-2 text-gray-500 text-sm">
+          <Clock className="w-4 h-4" />
+          Created on {new Date(resume.createdAt).toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",})}
+        </div>
+        {/* <button className="text-gray-500 text-sm flex items-center gap-1">
+          <History className="w-4 h-4" />
+          View old versions
+        </button> */}
+      </div>
+        <AlertDialog open={openAlert}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setOpenAlert(false)}>
+                Cancel
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={onDelete} disabled={loading}>
+                {loading ? <Loader2Icon className="animate-spin" /> : "Delete"}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+    {/* </div> */}
+        {/* <DropdownMenu>
           <DropdownMenuTrigger>
             <MoreVertical className="h-4 w-4 cursor-pointer text-black" />
           </DropdownMenuTrigger>
@@ -113,54 +169,20 @@ const ResumeCardItem = ({ resume ,refreshData}) => {
               <Download />
               Download
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={()=>setOpenAlert(true)}>
+            <DropdownMenuItem onClick={() => setOpenAlert(true)}>
               <Trash />
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <AlertDialog open={openAlert}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel onClick={()=>setOpenAlert(false)}>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={onDelete} disabled={loading}>{loading?<Loader2Icon className="animate-spin"/>:'Delete'}</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      </div>
+        
+         */}
+
+
+      
     </div>
   );
 };
-
-// export default ResumeCardItem;
-// import React from 'react';
-// import { Button } from '@/components/ui/button';
-// import { Link } from 'react-router-dom';
-
-// const ResumeCardItem = ({ resume, onClick }) => {
-//   return (
-//     <div
-//       className="p-5 border rounded-lg shadow hover:shadow-md transition-all cursor-pointer"
-//       onClick={onClick}
-//     >
-//       <h3 className="font-bold text-lg">{resume.title}</h3>
-//       {/* <p className="text-sm text-gray-500">{resume.resumeId}</p> */}
-
-//       <Link to={`/dashboard/resume/${resume.resumeId}/edit`}>
-//       <Button variant="outline" className="mt-2">
-//         Edit
-//       </Button>
-//       </Link>
-//     </div>
-//   );
-// };
 
 export default ResumeCardItem;

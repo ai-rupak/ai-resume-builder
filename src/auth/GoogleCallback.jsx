@@ -1,31 +1,44 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'; // Assuming you're using react-toastify
+import { toast } from 'react-toastify';
+import { useAuth } from '../context/AuthContext';
 
 const GoogleCallback = () => {
     const navigate = useNavigate();
+    const { fetchUserData } = useAuth();
 
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const token = params.get('token');
+        const handleCallback = async () => {
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get('token');
 
-        if (token) {
-            // Save the token to localStorage or a cookie
-            localStorage.setItem('authToken', token);
+            if (token) {
+                try {
+                    localStorage.setItem('authToken', token);
+                    await fetchUserData(token);
+                    toast.success('Login successful!');
+                    navigate('/dashboard');
+                } catch (error) {
+                    localStorage.removeItem('authToken');
+                    toast.error('Authentication failed');
+                    navigate('/auth/sign-in');
+                }
+            }
+             
+            // else {
+            //     toast.error('Login failed, please try again.');
+            //     navigate('/auth/sign-in');
+            // }
+        };
 
-            // Display success toast
-            toast.success('Login successful!');
+        handleCallback();
+    }, [navigate, fetchUserData]);
 
-            // Redirect to the dashboard
-            navigate('/dashboard');
-        } else {
-            // Handle missing token or errors
-            toast.error('Login failed, please try again.');
-            navigate('/auth/sign-in');
-        }
-    }, [navigate]);
-
-    return null; // Render nothing, just redirect
+    return (
+        <div className="fixed inset-0 flex items-center justify-center bg-white">
+            <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+    );
 };
 
 export default GoogleCallback;

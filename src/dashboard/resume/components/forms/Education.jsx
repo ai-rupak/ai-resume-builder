@@ -135,15 +135,15 @@ const Education = () => {
   }
 
   return (
-    <div className="p-5 shadow-lg rounded-sm border-t-primary border-t-4 mt-10">
-      <h2 className="font-bold text-lg">Education</h2>
-      <p>Add your educational details</p>
+    <div className="mt-10">
+      <h2 className="text-2xl font-bold text-[#0A1F44] mb-4">EDUCATION</h2>
+      <p className="text-gray-600 mb-6">Add your educational details</p>
       <div>
         {educationList.map((item, index) => (
-          <div key={index}>
-            <div className="grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg">
-              <div className="col-span-1">
-                <label className="text-sm">University Name *</label>
+          <div key={index} className="space-y-6">
+            <div className="grid grid-cols-2 mt-5 gap-4">
+              <div className="space-y-2">
+                <label className="block">UNIVERSITY NAME *</label>
                 <Input
                   name="universityName"
                   value={item.universityName || ''}
@@ -152,7 +152,7 @@ const Education = () => {
                 />
               </div>
               <div>
-                <label className="text-sm">Degree *</label>
+                <label className="text-sm">DEGREE *</label>
                 <Input 
                   name="degree" 
                   value={item.degree || ''}
@@ -161,7 +161,7 @@ const Education = () => {
                 />
               </div>
               <div>
-                <label className="text-sm">Start Date *</label>
+                <label className="text-sm">START DATE *</label>
                 <Input
                   type="date"
                   name="startDate"
@@ -171,7 +171,7 @@ const Education = () => {
                 />
               </div>
               <div>
-                <label className="text-sm">End Date</label>
+                <label className="text-sm">END DATE</label>
                 <Input
                   type="date"
                   name="endDate"
@@ -191,12 +191,12 @@ const Education = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-6">
         <div className="flex gap-2">
           <Button
             variant="outline"
             onClick={addNewEducation}
-            className="text-primary"
+            className="text-black"
             type="button"
           >
             + Add More Education
@@ -204,14 +204,15 @@ const Education = () => {
           <Button
             variant="outline"
             onClick={removeEducation}
-            className="text-primary"
+            className="text-black"
             type="button"
             disabled={educationList.length <= 1}
           >
             - Remove
           </Button>
         </div>
-        <Button onClick={handleSave} disabled={loading}>
+        <Button onClick={handleSave} disabled={loading}
+        className='bg-teal-600 hover:bg-teal-700 rounded-none'>
           {loading ? <LoaderCircle className="animate-spin" /> : 'Save'}
         </Button>
       </div>

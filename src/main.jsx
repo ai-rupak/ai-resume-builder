@@ -9,7 +9,7 @@ import Dashboard from './dashboard'
 import { ClerkProvider } from '@clerk/clerk-react'
 import EditResume from './dashboard/resume/[resumeId]/edit'
 import ViewResume from './my-resume/[resumeId]/view'
-import GoogleCallback from './auth/GoogleCallback'
+// import GoogleCallback from './auth/GoogleCallback'
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY

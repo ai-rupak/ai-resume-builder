@@ -1,80 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button } from '../ui/button';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { UserCircle } from 'lucide-react';
 
 const Header = () => {
-    const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+  const { user, handleLogout } = useAuth();
 
-    useEffect(() => {
-        // Get the token from localStorage
-        const token = localStorage.getItem('authToken');
-        if (token) {
-            // Fetch user data from the backend
-            axios
-                .get('/api/auth/user', {
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Send the token in the request header
-                    },
-                })
-                .then((response) => {
-                    console.log('User data from backend:', response.data); 
-                    setUser(response.data);
-                    
-                })
-                .catch((error) => {
-                    console.error('Error fetching user data:', error);
-                    toast.error('Error fetching user data');
-                });
-        }
-    }, []);
+  return (
+    <div className="p-3 px-5 flex justify-between items-center shadow-md">
+      <Link to={'/'}>
+        <img src="/logo.svg" alt="Logo" width={40} height={40} />
+      </Link>
 
-    const handleLogout = () => {
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('user');  
-        toast.success('Logged out successfully.');
-        navigate('/auth/sign-in');
-    };
-
-    return (
-        <div className="p-3 px-5 flex justify-between shadow-md">
-            <Link to={'/'}>
-                <img src="/logo.svg" alt="Logo" width={40} height={40} />
+      <div className="flex gap-4 items-center">
+        {user ? (
+          <>
+            <Link to={'/dashboard'}>
+              <Button variant="outline">Dashboard</Button>
             </Link>
-
-            <div className="flex gap-4 items-center">
-                {user ? (
-                    <>
-                        {/* Display profile card and name if logged in */}
-                        <div className="flex items-center gap-2">
-                            <img
-                                src={user.picture} // Assuming user data includes a picture URL
-                                alt="Profile"
-                                className="w-8 h-8 rounded-full"
-                            />
-                            <span>Hi, {user.name}</span>
-                        </div>
-                        <Link to={'/dashboard'}>
-                            <Button variant="outline">Dashboard</Button>
-                        </Link>
-                        <Button variant="outline" onClick={handleLogout}>Log out</Button>
-                    </>
-                ) : (
-                    <>
-                        {/* Show Get Started button if not logged in */}
-                        <Link to={'/auth/sign-in'}>
-                            <Button>Get Started</Button>
-                        </Link>
-                        <Link to={'/auth/sign-in'}>
-                            <Button variant="outline">Sign In</Button>
-                        </Link>
-                    </>
-                )}
-            </div>
-        </div>
-    );
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <div className="flex items-center gap-2 hover:bg-gray-100 rounded-full p-1">
+                  {user.picture ? (
+                    <img
+                      src={user.picture}
+                      alt="Profile"
+                      className="w-8 h-8 rounded-full"
+                    />
+                  ) : (
+                    <UserCircle className="w-8 h-8" />
+                  )}
+                  <span className="font-medium">{user.name}</span>
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={handleLogout}>
+                  Logout
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
+        ) : (
+          <>
+            <Link to={'/auth/sign-in'}>
+              <Button>Get Started</Button>
+            </Link>
+            <Link to={'/auth/sign-in'}>
+              <Button variant="outline">Sign In</Button>
+            </Link>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Header;

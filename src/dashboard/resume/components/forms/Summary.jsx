@@ -82,13 +82,13 @@ function Summary({ enabledNext }) {
 
   return (
     <div>
-      <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
-        <h2 className="font-bold text-lg">Summary</h2>
-        <p>Add Summary for your job title</p>
+      <div className=" mt-10">
+        <h2 className="text-2xl font-bold text-[#0A1F44] mb-4">SUMMARY</h2>
+        <p className='text-gray-600 mb-6'>Add Summary for your job title</p>
 
-        <form className="mt-7" onSubmit={onSave}>
+        <form className="mt-7 space-y-6" onSubmit={onSave}>
           <div className="flex justify-between items-end">
-            <label>Add Summary</label>
+            <label className='block'>Add Summary</label>
             <Button
               variant="outline"
               onClick={GenerateSummaryFromAI}
@@ -102,15 +102,15 @@ function Summary({ enabledNext }) {
             </Button>
           </div>
           <Textarea
-            className="mt-5"
+            className="mt-5 border-[#0A1F44]"
             required
             value={summary}
             placeholder="Enter your professional summary"
             onChange={(e) => setSummary(e.target.value)}
-            row={5}
+            row={10}
           />
           <div className="mt-2 flex justify-end">
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className='bg-teal-600 hover:bg-teal-700 rounded-none'>
               {loading ? <LoaderCircle className="animate-spin" /> : 'Save'}
             </Button>
           </div>
@@ -120,13 +120,13 @@ function Summary({ enabledNext }) {
       {aiGeneratedSummaryList && (
         <div className="my-5">
           <h2 className="font-bold text-lg">Suggestions</h2>
-          {aiGeneratedSummaryList.map((item, index) => (
+          {aiGeneratedSummaryList?.map((item, index) => (
             <div
               key={index}
               onClick={() => setSummary(item.summary)}
               className="p-5 shadow-lg my-4 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
             >
-              <h2 className="font-bold my-1 text-primary">
+              <h2 className="font-bold my-1 text-teal-600">
                 Level: {item.experience_level}
               </h2>
               <p>{item.summary}</p>

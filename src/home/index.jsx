@@ -5,7 +5,7 @@ import React from 'react'
 const Home = () => {
   return (
     <div>
-        
+        <Header/>
         
         <h1>Welcome to my home page</h1>
         <h1>Best resume app</h1>

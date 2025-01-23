@@ -149,56 +149,61 @@ function Experience({ enabledNext }) {
   }
 
   return (
-    <div className="p-5 shadow-lg rounded-sm border-t-primary border-t-4 mt-10">
-      <h2 className="font-bold text-lg">Professional Experience</h2>
-      <p>Add your previous job experience</p>
+    <div className=" mt-10">
+      <h2 className="text-2xl font-bold text-[#0A1F44] mb-4">PROFESSIONAL EXPERIENCE</h2>
+      <p className="text-gray-600 mb-6">Add your previous job experience</p>
 
       <div className="space-y-6">
         {experienceList.map((experience, index) => (
-          <div key={index} className="border p-4 rounded-lg">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="text-sm">Position Title *</label>
+          <div key={index} className=" ">
+            <div className="grid grid-cols-2 mt-5 gap-4">
+              <div className="space-y-2">
+                <label className="block">POSITION TITLE <span className='text-red-500'>*</span></label>
                 <Input
                   name="jobTitle"
                   value={experience.jobTitle || ''}
                   onChange={(e) => handleChange(index, e)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">Company Name *</label>
+              <div className="space-y-2">
+                <label className="block">Company Name <span className='text-red-500'>*</span></label>
                 <Input
                   name="company"
                   value={experience.company || ''}
                   onChange={(e) => handleChange(index, e)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">Start Date *</label>
+              <div className="space-y-2">
+                <label className="block">Start Date <span className='text-red-500'>*</span></label>
                 <Input
                   name="startDate"
                   type="date"
                   value={experience.startDate || ''}
                   onChange={(e) => handleChange(index, e)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">End Date</label>
+              <div className="space-y-2"> 
+                <label className="block">End Date</label>
                 <Input
                   name="endDate"
                   type="date"
                   value={experience.endDate || ''}
                   onChange={(e) => handleChange(index, e)}
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div className="col-span-2">
+              <div className="col-span-2" >
                 <RichTextEditor
                   index={index}
                   value={experience.description || ''}
                   onRichTextEditorChange={handleRichTextEditor}
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
             </div>
@@ -211,7 +216,7 @@ function Experience({ enabledNext }) {
           <Button
             variant="outline"
             onClick={handleAddExperience}
-            className="text-primary"
+            className="text-black border-[#0A1F44] rounded-none"
             type="button"
           >
             + Add More Experience
@@ -219,14 +224,15 @@ function Experience({ enabledNext }) {
           <Button
             variant="outline"
             onClick={handleRemoveExperience}
-            className="text-primary"
+            className="text-black border-[#0A1F44] rounded-none"
             type="button"
             disabled={experienceList.length <= 1}
           >
             - Remove
           </Button>
         </div>
-        <Button onClick={handleSave} disabled={loading}>
+        <Button onClick={handleSave} disabled={loading}
+        className='bg-teal-600 hover:bg-teal-700 rounded-none'>
           {loading ? <LoaderCircle className="animate-spin" /> : 'Save'}
         </Button>
       </div>

@@ -88,69 +88,75 @@ function PersonalDetail({ enabledNext }) {
   }
 
   return (
-    <div className="p-5 shadow-lg border-t-primary border-t-4 mt-10">
-      <h2 className="font-bold text-lg">Personal Detail</h2>
-      <p>Get Started with the basic information</p>
+    <div className="">
+      <h2 className="text-2xl font-bold text-[#0A1F44] mb-4">PERSONAL DETAILS</h2>
+      <p className='text-gray-600 mb-6'>What's the best way for employers to contact you?</p>
 
-      <form onSubmit={onSave}>
-        <div className="grid grid-cols-2 mt-5 gap-3">
-          <div>
-            <label className="text-sm">First Name</label>
+      <form onSubmit={onSave} className='space-y-6'>
+        <div className="grid grid-cols-2 mt-5 gap-4">
+          <div className='space-y-2'>
+            <label className="block">FIRST NAME <span className='text-red-500'>*</span></label>
             <Input
               name="firstName"
               value={formData?.firstName ?? ""}
               required
               onChange={handleInputChange}
+              className="rounded-none shadow-none border-[#0A1F44]"
             />
           </div>
-          <div>
-            <label className="text-sm">Last Name</label>
+          <div className='space-y-2'>
+            <label className="block">LAST NAME <span className='text-red-500'>*</span></label>
             <Input
               name="lastName"
               value={formData?.lastName ?? ""}
               required
               onChange={handleInputChange}
+              className="rounded-none shadow-none border-[#0A1F44]"
             />
           </div>
-          <div className="col-span-2">
-            <label className="text-sm">Job Title</label>
+          <div className="col-span-2 space-y-2">
+            <label className="block">JOB TITLE<span className='text-red-500'>*</span></label>
             <Input
               name="jobTitle"
               value={formData?.jobTitle ?? ""}
               required
               onChange={handleInputChange}
+              className="rounded-none shadow-none border-[#0A1F44]"
             />
           </div>
-          <div className="col-span-2">
-            <label className="text-sm">Address</label>
+          <div className="col-span-2 space-y-2">
+            <label className="block">ADDRESS<span className='text-red-500'>*</span></label>
             <Input
               name="address"
               value={formData?.address ?? ""}
               required
               onChange={handleInputChange}
+              className="rounded-none shadow-none border-[#0A1F44]"
             />
           </div>
           <div>
-            <label className="text-sm">Phone</label>
+            <label className="block space-y-2">PHONE<span className='text-red-500'>*</span></label>
             <Input
               name="phone"
               value={formData?.phone ?? ""}
               required
               onChange={handleInputChange}
+              className="rounded-none shadow-none border-[#0A1F44]"
             />
           </div>
           <div>
-            <label className="text-sm">Email</label>
+            <label className="block space-y-2">EMAIL<span className='text-red-500'>*</span></label>
             <Input
               name="email"
               value={formData?.email ?? ""}
               required
               onChange={handleInputChange}
+              className="rounded-none shadow-none border-[#0A1F44]"
             />
           </div>
         </div>
         <div className="mt-3 flex justify-end">
-          <Button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading} className='bg-teal-600 hover:bg-teal-700 rounded-none'>
             {loading ? <LoaderCircle className="animate-spin" /> : "Save"}
           </Button>
         </div>

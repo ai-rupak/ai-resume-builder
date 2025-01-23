@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PlusSquare, Loader2 } from "lucide-react";
+import { PlusSquare, Loader2, Plus } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 import ResumeApi from "../../../service/GlobalApi.js";
 // import GlobalApi from "../../../service/GlobalApi.js";
 
-const AddResume = () => {
+const AddResume = ({type,tip}) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [resumeTitle, setResumeTitle] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,14 +58,23 @@ const AddResume = () => {
   };
 
   return (
-    <div>
+    <div className="border-[#00C8A0] border rounded-lg p-6  cursor-pointer group">
       {/* Clickable card to open dialog */}
-      <div
-        className="p-14 py-24 border items-center flex justify-center bg-secondary rounded-lg h-[280px] hover:scale-105 transition-all hover:shadow-md cursor-pointer border-dashed"
-        onClick={() => setOpenDialog(true)}
-      >
-        <div className="bg-black bg-opacity-10 hover:bg-black hover:text-white p-5 rounded-full">
-          <PlusSquare />
+      <div className="flex gap-6"
+        >
+        <div className="w-64 h-32 border-[#00C8A0] border bg-[#E8F9F6] rounded-lg flex items-center justify-center group-hover:bg-[#d7f5f0] transition-colors duration-200"
+         onClick={() => setOpenDialog(true)}>
+        <div className="w-12 h-12 rounded-full bg-[#00C8A0] flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200 shadow-md" >
+            <Plus className="w-6 h-6 text-white" />
+          </div>
+        </div>
+        <div className="flex-1">
+          <h3 className="text-xl font-medium mb-2">New  {type === "resume" ? "resume" : "cover letter"}</h3>
+          
+          <p className="text-gray-600">
+            <span className="font-medium">TIP: {tip} </span> 
+            
+          </p>
         </div>
       </div>
 
