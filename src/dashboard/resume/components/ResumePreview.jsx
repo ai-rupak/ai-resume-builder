@@ -15,15 +15,17 @@ const ResumePreview = () => {
   return (
     <>
       <div className="lg:pl-8 flex flex-col h-full">
-        <div className="bg-white p-4 rounded-lg border mb-4">
-          <div className="text-sm text-gray-600 mb-2 text-center">
-            Our Resume Builder delivers results ¹
+        <div id="no-print">
+          <div className="bg-white p-4 rounded-lg border mb-4">
+            <div className="text-sm text-gray-600 mb-2 text-center">
+              Our Resume Builder delivers results ¹
+            </div>
+            <div className="flex items-center text-emerald-600 font-medium justify-center">
+              <span className="mr-2">50%</span>
+              <span>Increase in dream job prospects</span>
+            </div>
+            </div>
           </div>
-          <div className="flex items-center text-emerald-600 font-medium justify-center">
-            <span className="mr-2">50%</span>
-            <span>Increase in dream job prospects</span>
-          </div>
-        </div>
         <div className="relative aspect-[5/5] border-black border-[1px] rounded-none overflow-y-auto flex-1 ">
           <div
             className="h-full p-4 "

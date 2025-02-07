@@ -21,11 +21,13 @@ const Sidebar = ({activeIndex , isSidebarOpen , setIsSidebarOpen}) => {
       <nav className="space-y-4">
         {[
           { num: 1, text: "Heading", active: activeIndex === 1 },
-          { num: 2, text: "Education", active: activeIndex === 2 },
+          { num: 2, text: "Summary", active: activeIndex === 2 },
           { num: 3, text: "Professional\nExperience", active: activeIndex === 3 },
-          { num: 4, text: "Skills", active: activeIndex === 4 },
-          { num: 5, text: "Summary", active: activeIndex === 5 },
-          { num: 6, text: "Finalize", active: activeIndex === 6 },
+          { num: 4, text: "Education", active: activeIndex === 4 },
+          { num: 5, text: "Projects", active: activeIndex === 5 },
+          { num: 6, text: "Skills", active: activeIndex === 6 },
+          { num: 6, text: "Finalize", active: activeIndex === 7 },
+
         ].map((item, index) => (
           <div
             key={index}
@@ -52,7 +54,7 @@ const Sidebar = ({activeIndex , isSidebarOpen , setIsSidebarOpen}) => {
         <div className="h-2 bg-gray-700 rounded">
           <div
             className="h-full bg-green-500 rounded"
-            style={{ width: `${(activeIndex / 6) * 100}%` }}
+            style={{ width: `${(activeIndex / 7) * 100}%` }}
           />
         </div>
         <div className="mt-2 text-sm text-gray-300">RESUME COMPLETENESS</div>

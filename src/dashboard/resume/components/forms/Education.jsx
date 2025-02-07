@@ -140,51 +140,56 @@ const Education = () => {
       <p className="text-gray-600 mb-6">Add your educational details</p>
       <div>
         {educationList.map((item, index) => (
-          <div key={index} className="space-y-6">
-            <div className="grid grid-cols-2 mt-5 gap-4">
+          <div key={index} className="space-y-6 border p-2">
+            <div className="grid grid-cols-2 mt-5 gap-4 ">
               <div className="space-y-2">
-                <label className="block">UNIVERSITY NAME *</label>
+                <label className="block">UNIVERSITY NAME <span className='text-red-500'>*</span></label>
                 <Input
                   name="universityName"
                   value={item.universityName || ''}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">DEGREE *</label>
+              <div className="space-y-2">
+                <label className="block">DEGREE <span className='text-red-500'>*</span></label>
                 <Input 
                   name="degree" 
                   value={item.degree || ''}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">START DATE *</label>
+              <div className="space-y-2">
+                <label className="block">START DATE <span className='text-red-500'>*</span></label>
                 <Input
                   type="date"
                   name="startDate"
                   value={item.startDate || ''}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">END DATE</label>
+              <div className="space-y-2">
+                <label className="block">END DATE</label>
                 <Input
                   type="date"
                   name="endDate"
                   value={item.endDate || ''}
                   onChange={(e) => handleChange(e, index)}
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div className="col-span-2">
-                <label className="text-sm">Description</label>
+              <div className="col-span-2 space-y-2">
+                <label className="block">DESCRIPTION</label>
                 <Textarea
                   name="description"
                   value={item.description || ''}
                   onChange={(e) => handleChange(e, index)}
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
             </div>
@@ -196,7 +201,7 @@ const Education = () => {
           <Button
             variant="outline"
             onClick={addNewEducation}
-            className="text-black"
+            className="text-black border-[#0A1F44] rounded-none"
             type="button"
           >
             + Add More Education
@@ -204,7 +209,7 @@ const Education = () => {
           <Button
             variant="outline"
             onClick={removeEducation}
-            className="text-black"
+            className="text-black border-[#0A1F44] rounded-none"
             type="button"
             disabled={educationList.length <= 1}
           >
@@ -212,7 +217,7 @@ const Education = () => {
           </Button>
         </div>
         <Button onClick={handleSave} disabled={loading}
-        className='bg-teal-600 hover:bg-teal-700 rounded-none'>
+        className='bg-[#092347ee] hover:bg-[#0A1F44] rounded-none'>
           {loading ? <LoaderCircle className="animate-spin" /> : 'Save'}
         </Button>
       </div>

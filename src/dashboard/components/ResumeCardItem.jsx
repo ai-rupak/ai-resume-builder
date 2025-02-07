@@ -88,17 +88,17 @@ const ResumeCardItem = ({ resume, refreshData }) => {
         />
       </div> */}
 
-      <div className="space-y-4 hover:bg-slate-100 transition-all duration-300">
+      <div className="space-y-4 hover:bg-slate-100 transition-all duration-300 p-4">
         <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 w-full" onClick={() => navigate("/dashboard/resume/" + resume.resumeId + "/edit")}>
-          <Edit3 className="w-5 h-5 text-gray-400" />
+          <Edit3 className="w-5 h-5 text-teal-500" />
           <span className="text-gray-600">Edit</span>
         </button>
         <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 w-full" onClick={() => navigate("/my-resume/" + resume.resumeId + "/view")}>
-          <Eye className="w-5 h-5 text-gray-400" />
+          <Eye className="w-5 h-5 text-teal-500" />
           <span className="text-gray-600">View</span>
         </button>
         <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 w-full" onClick={() => navigate("/my-resume/" + resume.resumeId + "/view")}>
-          <Download className="w-5 h-5 text-gray-400" />
+          <Download className="w-5 h-5 text-teal-500" />
           <span className="text-gray-600">Download</span>
         </button>
         <button className="flex items-center gap-2 text-red-600 hover:text-red-700 w-full" onClick={() => setOpenAlert(true)}>
@@ -107,7 +107,7 @@ const ResumeCardItem = ({ resume, refreshData }) => {
         </button>
       </div>
 
-      <div className="flex items-center justify-between mt-6 pt-6 border-t">
+      <div className="flex items-center justify-between mt-2 pt-2 border-t">
         <div className="flex items-center gap-2 text-gray-500 text-sm">
           <Clock className="w-4 h-4" />
           Created on {new Date(resume.createdAt).toLocaleDateString("en-US", {

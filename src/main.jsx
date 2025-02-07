@@ -8,7 +8,7 @@ import Home from './home'
 import Dashboard from './dashboard'
 import { ClerkProvider } from '@clerk/clerk-react'
 import EditResume from './dashboard/resume/[resumeId]/edit'
-import ViewResume from './my-resume/[resumeId]/view'
+import ViewResume from './my-resume/[resumeId]/download'
 // import GoogleCallback from './auth/GoogleCallback'
 
 // Import your publishable key

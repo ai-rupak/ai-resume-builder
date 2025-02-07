@@ -8,7 +8,7 @@ import Dashboard from './dashboard';
 import SigninPage from './auth/sign-in';
 import Home from './home';
 import ResumeEdit from './dashboard/resume/[resumeId]/edit';
-import ViewResume from './my-resume/[resumeId]/view';
+import ViewResume from './my-resume/[resumeId]/download';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 // Protected Route Component

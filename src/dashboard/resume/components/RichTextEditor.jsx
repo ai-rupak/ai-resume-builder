@@ -54,7 +54,7 @@ const RichTextEditor = ({ onRichTextEditorChange, index, value }) => {
   return (
     <div>
       <div className='flex justify-between my-2'>
-        <label className='text-sm'>Description</label>
+        <label className='block'>DESCRIPTION</label>
         <Button 
           onClick={GenerateSummaryFromAI} 
           className='flex gap-2 border-primary text-primary' 

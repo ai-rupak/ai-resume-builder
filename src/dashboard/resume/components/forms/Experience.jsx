@@ -155,7 +155,7 @@ function Experience({ enabledNext }) {
 
       <div className="space-y-6">
         {experienceList.map((experience, index) => (
-          <div key={index} className=" ">
+          <div key={index} className="border p-2 ">
             <div className="grid grid-cols-2 mt-5 gap-4">
               <div className="space-y-2">
                 <label className="block">POSITION TITLE <span className='text-red-500'>*</span></label>
@@ -178,7 +178,7 @@ function Experience({ enabledNext }) {
                 />
               </div>
               <div className="space-y-2">
-                <label className="block">Start Date <span className='text-red-500'>*</span></label>
+                <label className="block">START DATE<span className='text-red-500'>*</span></label>
                 <Input
                   name="startDate"
                   type="date"
@@ -189,7 +189,7 @@ function Experience({ enabledNext }) {
                 />
               </div>
               <div className="space-y-2"> 
-                <label className="block">End Date</label>
+                <label className="block">END DATE</label>
                 <Input
                   name="endDate"
                   type="date"
@@ -232,7 +232,7 @@ function Experience({ enabledNext }) {
           </Button>
         </div>
         <Button onClick={handleSave} disabled={loading}
-        className='bg-teal-600 hover:bg-teal-700 rounded-none'>
+        className='bg-[#092347ee] hover:[#092347ee] rounded-none'>
           {loading ? <LoaderCircle className="animate-spin" /> : 'Save'}
         </Button>
       </div>

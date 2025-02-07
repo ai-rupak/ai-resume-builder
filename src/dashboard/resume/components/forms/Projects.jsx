@@ -121,58 +121,62 @@ const Projects = () => {
   }
 
   return (
-    <div className="p-5 shadow-lg rounded-sm border-t-primary border-t-4 mt-10">
-      <h2 className="font-bold text-lg">Projects</h2>
-      <p>Add your project details</p>
+    <div className=" mt-10">
+      <h2 className="text-2xl font-bold text-[#0A1F44] mb-4">PROJECTS</h2>
+      <p className='text-gray-600 mb-6'>Add your project details</p>
       <div>
         {projectsList.map((item, index) => (
-          <div key={index}>
-            <div className="grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg">
-              <div className="col-span-1">
-                <label className="text-sm">Project Title *</label>
+          <div key={index} className="space-y-3 border p-2">
+            <div className="grid grid-cols-2 mt-5 gap-4">
+              <div className="col-span-1 space-y-2">
+                <label className="block">PROJECT TITLE <span className='text-red-500'>*</span></label>
                 <Input
                   name="projectTitle"
                   value={item.projectTitle || ""}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">Description *</label>
+              <div className="space-y-2">
+                <label className="block">DESCRIPTION <span className='text-red-500'>*</span></label>
                 <Textarea
                   name="description"
                   value={item.description || ""}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">Technologies *</label>
+              <div className="space-y-2">
+                <label className="block">TECHNOLOGIES <span className='text-red-500'>*</span></label>
                 <Input
                   name="technologies"
                   value={item.technologies || ""}
                   onChange={(e) => handleChange(e, index)}
                   required
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
-              <div>
-                <label className="text-sm">Link</label>
+              <div className="space-y-2">
+                <label className="block">LINK</label>
                 <Input
                   name="link"
                   value={item.link || ""}
                   onChange={(e) => handleChange(e, index)}
+                  className="rounded-none shadow-none border-[#0A1F44]"
                 />
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-6">
         <div className="flex gap-2">
           <Button
             variant="outline"
             onClick={addNewProject}
-            className="text-primary"
+            className="text-black border-[#0A1F44] rounded-none"
             type="button"
           >
             + Add More Projects
@@ -180,14 +184,15 @@ const Projects = () => {
           <Button
             variant="outline"
             onClick={removeProject}
-            className="text-primary"
+            className="text-black border-[#0A1F44] rounded-none"
             type="button"
             disabled={projectsList.length <= 1}
           >
             - Remove
           </Button>
         </div>
-        <Button onClick={handleSave} disabled={loading}>
+        <Button onClick={handleSave} disabled={loading}
+        className='bg-[#092347ee] rounded-none hover:bg-[#092347ee]'>
           {loading ? <LoaderCircle className="animate-spin" /> : "Save"}
         </Button>
       </div>

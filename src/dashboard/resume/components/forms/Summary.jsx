@@ -86,7 +86,7 @@ function Summary({ enabledNext }) {
         <h2 className="text-2xl font-bold text-[#0A1F44] mb-4">SUMMARY</h2>
         <p className='text-gray-600 mb-6'>Add Summary for your job title</p>
 
-        <form className="mt-7 space-y-6" onSubmit={onSave}>
+        <form className="mt-7 space-y-6 border  p-2" onSubmit={onSave}>
           <div className="flex justify-between items-end">
             <label className='block'>Add Summary</label>
             <Button
@@ -110,7 +110,7 @@ function Summary({ enabledNext }) {
             row={10}
           />
           <div className="mt-2 flex justify-end">
-            <Button type="submit" disabled={loading} className='bg-teal-600 hover:bg-teal-700 rounded-none'>
+            <Button type="submit" disabled={loading} className='bg-[#092347ee] hover:bg-[#092347ee] rounded-none'>
               {loading ? <LoaderCircle className="animate-spin" /> : 'Save'}
             </Button>
           </div>

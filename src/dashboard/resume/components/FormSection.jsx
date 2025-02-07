@@ -48,15 +48,16 @@ const FormSection = ({
           <ChevronLeft className="w-4 h-4 mr-1" />
           Go Back
         </Link>
-        <Button
+        {/* <Button
           className="bg-white text-black hover:bg-black hover:text-white rounded-none shadow-none border border-black" 
           size="sm"
         >
           Title: {resumeInfo.title} {" "} <Edit2/>
-        </Button>
+        </Button> */}
         <ThemeColor />
+        <div></div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex flex-row justify-between">
         {activeFormIndex > 1 && (
           <Button
             onClick={() => setActiveFormIndex(activeFormIndex - 1)}
