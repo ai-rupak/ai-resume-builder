@@ -17,7 +17,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import ThemeColor from "./ThemeColor";
 import ResumeApi from "./../../../../service/GlobalApi";
 import { toast } from "react-toastify";
-import { ResumeInfoContext } from "@/context/ResumeInfoContext";
+import { ResumeInfoContext } from "@/context/ResumeinfoContext";
 import Projects from "./forms/Projects";
 
 const FormSection = ({
