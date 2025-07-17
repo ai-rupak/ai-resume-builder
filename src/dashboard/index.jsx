@@ -9,7 +9,7 @@ import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import SearchBar from './components/SearchBar';
 import {  useAuth } from '@/context/AuthContext';
-import Header from '@/components/custom';
+import { Header } from '@/components/landing/Header';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ const Dashboard = () => {
   return (
     <div>
         <Header />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-20">
         <div className='flex items-center justify-between mb-4'>
             <div>
 

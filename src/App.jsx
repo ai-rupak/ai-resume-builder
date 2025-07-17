@@ -10,6 +10,8 @@ import Home from './home';
 import ResumeEdit from './dashboard/resume/[resumeId]/edit';
 import ViewResume from './my-resume/[resumeId]/download';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import NotFound from './pages/NotFound';
+import Index from './pages';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -40,7 +42,8 @@ const App = () => {
           </ProtectedRoute>
         } />
         <Route path="/my-resume/:resumeId/view" element={<ViewResume />} />
-        <Route path='/' element={<Home/>}/>
+        <Route path='/' element={<Index/>}/>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Outlet/>
     </AuthProvider>
