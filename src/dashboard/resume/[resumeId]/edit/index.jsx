@@ -44,7 +44,7 @@ import ResumePreview from "../../components/ResumePreview.jsx";
 import Header from "@/components/custom/index.jsx";
 import Sidebar from "../../components/Sidebar.jsx";
 import { ChevronLeft, Menu, X } from "lucide-react";
-import { ResumeInfoContext } from "@/context/ResumeInfoContext.jsx";
+import { ResumeInfoContext } from "@/context/ResumeInfoContext";
 
 const ResumeEdit = () => {
   const { resumeId } = useParams(); // Get the resumeId from the URL
