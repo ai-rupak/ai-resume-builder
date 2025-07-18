@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
+import { toast } from 'sonner';
 
 const GoogleCallback = () => {
     const navigate = useNavigate();

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Sparkles, ArrowRight, Star, Users, Zap, Shield } from "lucide-react";
 import { useState, useEffect } from "react";
 import heroImage from "@/assets/hero-ai-resume.jpg";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,11 +23,7 @@ export const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleGetStarted = () => {
-    // Add your navigation logic here
-    console.log("Getting started...");
-  };
-
+ 
   const handleWatchDemo = () => {
     // Add your demo logic here
     console.log("Opening demo...");
@@ -96,8 +93,9 @@ export const Hero = () => {
             
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <Link to={"/auth/sign-in"} className="w-full sm:w-auto">
               <Button 
-                onClick={handleGetStarted}
+                // onClick={}
                 className="relative group bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-lg px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
                 <span className="relative z-10 flex items-center">
@@ -106,7 +104,7 @@ export const Hero = () => {
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-blue-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Button>
-              
+              </Link>
               <Button 
                 variant="outline" 
                 onClick={handleWatchDemo}

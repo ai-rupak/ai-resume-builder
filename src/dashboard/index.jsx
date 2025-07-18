@@ -3,13 +3,13 @@ import AddResume from './components/AddResume';
 import GlobalApi from './../../service/GlobalApi';
 import ResumeCardItem from './components/ResumeCardItem';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import ResumeApi from './../../service/GlobalApi';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import SearchBar from './components/SearchBar';
 import {  useAuth } from '@/context/AuthContext';
 import { Header } from '@/components/landing/Header';
+import { toast } from 'sonner';
 
 const Dashboard = () => {
   const navigate = useNavigate();

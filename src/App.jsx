@@ -1,5 +1,5 @@
 import React from 'react'
-import { ToastContainer } from 'react-toastify';
+// import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import Header from './components/custom'
@@ -12,6 +12,7 @@ import ViewResume from './my-resume/[resumeId]/download';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import NotFound from './pages/NotFound';
 import Index from './pages';
+import { Toaster } from 'sonner';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -26,7 +27,9 @@ const ProtectedRoute = ({ children }) => {
 const App = () => {
   return (
     <AuthProvider>
-      <ToastContainer position="top-right" autoClose={3000} />
+      {/* <ToastContainer position="top-right" autoClose={3000} /> */}
+      <Toaster position='bottom-right' richColors />
+    
       {/*    */}
       <Routes>
         <Route path="/auth/sign-in" element={<SigninPage/>} />
