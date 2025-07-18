@@ -41,7 +41,7 @@ import { toast } from "react-toastify";
 import ResumeApi from "../../../../../service/GlobalApi.js";
 import FormSection from "../../components/FormSection.jsx";
 import ResumePreview from "../../components/ResumePreview.jsx";
-import { ResumeInfoContext } from "@/context/ResumeInfoContext.jsx";
+import { ResumeInfoContext } from "../../../../context/ResumeInfoContext.jsx";
 import Header from "@/components/custom/index.jsx";
 import Sidebar from "../../components/Sidebar.jsx";
 import { ChevronLeft, Menu, X } from "lucide-react";
