@@ -1,5 +1,5 @@
 import React from 'react'
-// import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import Header from './components/custom'
@@ -27,7 +27,7 @@ const ProtectedRoute = ({ children }) => {
 const App = () => {
   return (
     <AuthProvider>
-      {/* <ToastContainer position="top-right" autoClose={3000} /> */}
+      <ToastContainer position="top-right" autoClose={3000} />
       <Toaster position='bottom-right' richColors />
     
       {/*    */}
