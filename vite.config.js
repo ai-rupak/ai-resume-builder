@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)) // ✅ Vercel safe
+      '@':  path.resolve(__dirname, "src")// ✅ Vercel safe
     }
   },
   server: {
