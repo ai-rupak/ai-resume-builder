@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import React, { useState, useEffect, useContext } from "react";
 import RichTextEditor from "../RichTextEditor";
-import { ResumeInfoContext } from "@/context/ResumeinfoContext";
+import { ResumeInfoContext } from "@/context/ResumeInfoContext";
 import { LoaderCircle } from "lucide-react";
 import ResumeApi from "./../../../../../service/GlobalApi";
 import { useParams } from "react-router-dom";
