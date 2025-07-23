@@ -1,4 +1,4 @@
-import { ResumeInfoContext } from "@/context/ResumeinfoContext";
+import { ResumeInfoContext } from "@/context/ResumeInfoContext";
 import React, { useContext, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
