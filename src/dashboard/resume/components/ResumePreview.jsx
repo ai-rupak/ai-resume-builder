@@ -1,4 +1,3 @@
-import { ResumeInfoContext } from "@/context/ResumeinfoContext";
 import React, { useContext, useState } from "react";
 import PersonalDetailPreview from "./preview/PersonalDetailPreview";
 import SummaryPreview from "./preview/SummaryPreview";
@@ -8,6 +7,7 @@ import SkillsPreview from "./preview/SkillsPreview";
 import ProjectsPreview from "./preview/ProjectsPreview";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Eye, EyeIcon, X } from "lucide-react";
+import { ResumeInfoContext } from "@/context/ResumeInfoContext";
 
 const ResumePreview = () => {
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
