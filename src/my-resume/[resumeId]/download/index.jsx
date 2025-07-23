@@ -13,6 +13,7 @@ import Download_Sidebar from '@/components/custom/download/Download_Sidebar'
 import Right_Sidebar from '@/components/custom/download/Right_Sidebar'
 import Download_Header from '@/components/custom/download/Download_Header'
 import Download_ResumePreview from '@/components/custom/download/Download_ResumePreview'
+import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 
 function ViewResume() {
 

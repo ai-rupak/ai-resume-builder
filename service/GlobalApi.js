@@ -63,7 +63,7 @@ import axios from "axios";
 
 // Create axios instance with default config
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL: "https://ai-resume-backend-hdci.onrender.com/api",
     headers: {
         "Content-Type": "application/json",
     },

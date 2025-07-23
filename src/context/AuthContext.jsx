@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUserData = async (token) => {
     try {
-      const response = await axios.get('http://localhost:5000/api/auth/user', {
+      const response = await axios.get('https://ai-resume-backend-hdci.onrender.com//api/auth/user', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(response.data);
