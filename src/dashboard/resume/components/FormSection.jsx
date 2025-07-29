@@ -91,7 +91,7 @@ const FormSection = ({
         ) : activeFormIndex == 6 ? (
           <Skills />
         ) : activeFormIndex == 7 ? (
-          <Navigate to={`${import.meta.env.VITE_BASE_URL}/my-resume/" + resumeId + "/view`} />
+          <Navigate to={`${import.meta.env.VITE_BASE_URL}/my-resume/${resumeId}/view`} />
         ) : (
           <div>Form not found</div>
         )}
