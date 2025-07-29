@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../../ui/button';
 import { Download, Link } from 'lucide-react';
-import { RWebShare } from 'react-web-share';
+// import { RWebShare } from 'react-web-share';
 
 const Download_Sidebar = ({resumeId, resumeInfo}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -196,7 +196,7 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
             </svg>
             ATS Check
           </Button>
-          <RWebShare
+          {/* <RWebShare
         data={{
           text: "Hello Everyone, This is my resume please open url to see it",
           url: import.meta.env.VITE_BASE_URL+"/my-resume/"+resumeId+"/view",
@@ -207,7 +207,7 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
       <Link/>
       Share
     </Button>
-      </RWebShare>
+      </RWebShare> */}
           <Button variant="ghost" className="w-full justify-start">
             <Download/>
            Download
