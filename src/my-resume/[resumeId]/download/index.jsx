@@ -3,7 +3,7 @@ import ResumePreview from '@/dashboard/resume/components/ResumePreview'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import GlobalApi from '../../../../service/GlobalApi'
-import Header from '@/components/custom'
+
 import { RWebShare } from 'react-web-share'
 import ResumeApi from '../../../../service/GlobalApi'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
@@ -14,6 +14,7 @@ import Right_Sidebar from '@/components/custom/download/Right_Sidebar'
 import Download_Header from '@/components/custom/download/Download_Header'
 import Download_ResumePreview from '@/components/custom/download/Download_ResumePreview'
 import { ResumeInfoContext } from '@/context/ResumeInfoContext'
+import { Header } from '@/components/landing/Header'
 
 function ViewResume() {
 
