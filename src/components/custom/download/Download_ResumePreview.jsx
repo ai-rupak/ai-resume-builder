@@ -1,5 +1,6 @@
 import { ResumeInfoContext } from "@/context/ResumeInfoContext";
 import React, { useContext, useRef, useState } from "react";
+import html2pdf from "html2pdf.js";
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Eye, EyeIcon, X } from "lucide-react";
@@ -9,8 +10,6 @@ import ExperiencePreview from "@/dashboard/resume/components/preview/ExperienceP
 import ProjectsPreview from "@/dashboard/resume/components/preview/ProjectsPreview";
 import EducationalPreview from "@/dashboard/resume/components/preview/EducationalPreview";
 import SkillsPreview from "@/dashboard/resume/components/preview/SkillsPreview";
-import  html2pdf  from "html2pdf.js";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 
 const Download_ResumePreview = () => {
 

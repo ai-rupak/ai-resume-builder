@@ -1,5 +1,8 @@
+import { Button } from '@/components/ui/button'
+import ResumePreview from '@/dashboard/resume/components/ResumePreview'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import GlobalApi from '../../../../service/GlobalApi'
 
 import ResumeApi from '../../../../service/GlobalApi'
 import Download_Sidebar from '@/components/custom/download/Download_Sidebar'

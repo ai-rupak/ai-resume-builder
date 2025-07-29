@@ -5,7 +5,7 @@ import { RWebShare } from 'react-web-share';
 
 const Download_Sidebar = ({resumeId, resumeInfo}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(false); 
 
   // Handle responsive design
   useEffect(() => {
