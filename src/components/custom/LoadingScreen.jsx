@@ -1,3 +1,4 @@
+import { Brain, BrainIcon } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
 const LoadingScreen = ({ 
@@ -41,11 +42,12 @@ const LoadingScreen = ({
     <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 z-50">
       <div className="flex flex-col items-center gap-6 max-w-md mx-auto p-8">
         {/* Logo/Brand Area */}
-        <div className="mb-4">
+        <BrainIcon className="w-16 h-16 text-blue-600 mb-4 " />
+        {/* <div className="mb-4">
           <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
             <div className="w-10 h-10 bg-white rounded-lg opacity-90"></div>
           </div>
-        </div>
+        </div> */}
 
         {/* Main Loading Animation */}
         <div className="relative">
@@ -54,9 +56,9 @@ const LoadingScreen = ({
           {/* Spinning ring */}
           <div className="absolute inset-0 w-20 h-20 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
           {/* Inner pulsing dot */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          {/* <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-          </div>
+          </div> */}
         </div>
 
         {/* Loading Message */}

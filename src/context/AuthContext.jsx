@@ -8,6 +8,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('authToken') || null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const baseURL = import.meta.env.VITE_BACKEND_URL;
@@ -61,14 +62,16 @@ export const AuthProvider = ({ children }) => {
     toast.success('Logged out successfully');
   };
 
+  const value={
+    token,
+    user,
+    isLoading,
+    // handleLogin,
+    handleLogout,
+    fetchUserData
+  }
   return (
-    <AuthContext.Provider value={{
-      user,
-      isLoading,
-    //   handleLogin,
-      handleLogout,
-      fetchUserData
-    }}>
+    <AuthContext.Provider value={value}>
       {isLoading ? <LoadingScreen /> : children}
     </AuthContext.Provider>
   );

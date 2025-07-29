@@ -88,7 +88,8 @@ const NotFound = () => {
           <p className="text-sm text-gray-500 mb-3">Need help? Try these:</p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <a 
-              href="/" 
+              
+              navigate="/"
               className="text-indigo-600 hover:text-indigo-800 hover:underline transition-colors"
             >
               Home

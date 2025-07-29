@@ -58,20 +58,19 @@ const AddResume = ({type,tip}) => {
   };
 
   return (
-    <div className="border-[#092347ee] border rounded-lg p-6  cursor-pointer group">
+    <div className="border-[#092347ee] border rounded-lg p-4 sm:p-6 cursor-pointer group">
       {/* Clickable card to open dialog */}
-      <div className="flex gap-6"
-        >
-        <div className="w-64 h-32 border-[#00C8A0] border bg-[#E8F9F6] rounded-lg flex items-center justify-center group-hover:bg-[#d7f5f0] transition-colors duration-200"
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+        <div className="w-full sm:w-48 md:w-56 lg:w-64 h-24 sm:h-28 md:h-32 border-[#00C8A0] border bg-[#E8F9F6] rounded-lg flex items-center justify-center group-hover:bg-[#d7f5f0] transition-colors duration-200 flex-shrink-0"
          onClick={() => setOpenDialog(true)}>
-        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200 shadow-md" >
-            <Plus className="w-6 h-6 text-white" />
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200 shadow-md" >
+            <Plus className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
           </div>
         </div>
-        <div className="flex-1">
-          <h3 className="text-xl font-medium mb-2">New  {type === "resume" ? "resume" : "cover letter"}</h3>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-lg sm:text-xl font-medium mb-2">New  {type === "resume" ? "resume" : "cover letter"}</h3>
           
-          <p className="text-gray-600">
+          <p className="text-sm sm:text-base text-gray-600">
             <span className="font-medium">TIP: {tip} </span> 
             
           </p>
@@ -80,7 +79,7 @@ const AddResume = ({type,tip}) => {
 
       {/* Dialog for adding a new resume */}
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent>
+        <DialogContent className="w-[95vw] max-w-md mx-auto">
           <DialogHeader>
             <DialogTitle>Create New Resume</DialogTitle>
             <DialogDescription>
@@ -92,9 +91,10 @@ const AddResume = ({type,tip}) => {
                 onChange={(e) => setResumeTitle(e.target.value)}
               />
             </DialogDescription>
-            <div className="flex justify-end gap-5">
+            <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-5">
               <Button
                 variant="ghost"
+                className="w-full sm:w-auto"
                 onClick={() => {
                   setResumeTitle("");
                   setOpenDialog(false);
@@ -105,6 +105,7 @@ const AddResume = ({type,tip}) => {
               <Button
                 disabled={!resumeTitle.trim() || loading}
                 onClick={handleCreateResume}
+                className="w-full sm:w-auto"
               >
                 {loading ? <Loader2 className="animate-spin" /> : "Create"}
               </Button>

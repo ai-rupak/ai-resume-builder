@@ -1,39 +1,4 @@
-// import React, { useEffect, useState } from 'react'
-// import { useParams } from 'react-router-dom'
-// import FormSection from '../../components/FormSection';
-// import ResumePreview from '../../components/ResumePreview';
-// import { ResumeInfoContext } from '@/context/ResumeinfoContext';
-// import dummy from '@/data/dummy';
-// import GlobalApi from '/service/GlobalApi.js';
 
-// const EditResume = () => {
-//     const {resumeId} = useParams();
-//     const [resumeInfo, setResumeInfo] = useState();
-
-//     useEffect(()=>{
-//       // setResumeInfo(dummy);
-//       GetResumeInfo();
-//     },[])
-
-//     const GetResumeInfo = ()=>{
-//       GlobalApi.GetResumeById(resumeId).then((res)=>{
-//         setResumeInfo(res.data.data);
-//         console.log(res.data.data);
-//       }).catch((err)=>{
-//         console.log(err);
-//       })
-//     }
-//   return (
-//     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}}>
-//     <div className='grid grid-cols-1 md:grid-cols-2 p-10 gap-10'>
-//         <FormSection/>
-//         <ResumePreview/>
-//     </div>
-//     </ResumeInfoContext.Provider>
-//   )
-// }
-
-// export default EditResume
 
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -45,6 +10,7 @@ import Header from "@/components/custom/index.jsx";
 import Sidebar from "../../components/Sidebar.jsx";
 import { ChevronLeft, Menu, X } from "lucide-react";
 import { ResumeInfoContext } from "@/context/ResumeInfoContext";
+import LoadingScreen from "@/components/custom/LoadingScreen.jsx";
 
 const ResumeEdit = () => {
   const { resumeId } = useParams(); // Get the resumeId from the URL
@@ -71,7 +37,7 @@ const ResumeEdit = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingScreen message="Loading resume data..." showProgress={true} />;
   }
 
   if (!resumeInfo) {
