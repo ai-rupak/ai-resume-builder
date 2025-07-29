@@ -5,20 +5,28 @@ import { Download, Link } from 'lucide-react';
 
 const Download_Sidebar = ({resumeId, resumeInfo}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false); 
+  const [isMobile, setIsMobile] = useState(null); // Start with null to prevent flash
 
   // Handle responsive design
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      // Automatically close sidebar when switching to mobile
+      if (mobile && isSidebarOpen) {
+        setIsSidebarOpen(false);
+      }
     };
+
+    // Initial check
+    checkMobile();
 
     // Add resize listener
     window.addEventListener('resize', checkMobile);
 
     // Cleanup listener
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [isSidebarOpen]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prevState) => !prevState);
@@ -34,6 +42,7 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
         if (
           sidebar && 
           !sidebar.contains(event.target) && 
+          toggleButton && 
           !toggleButton.contains(event.target)
         ) {
           setIsSidebarOpen(false);
@@ -47,40 +56,53 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
     }
   }, [isMobile, isSidebarOpen]);
 
+  // Don't render until we know if it's mobile or not
+  if (isMobile === null) {
+    return null;
+  }
+
   return (
-    
-        
     <div className="relative">
       {/* Sidebar Toggle Button for Mobile */}
-      <Button
-        variant="ghost"
-        className="sidebar-toggle fixed top-13 right-2 z-50 md:hidden rounded-none border bg-[#0A1F44] 
-          text-white py-2"
-        onClick={toggleSidebar}
-      >
-        <svg
-          className="h-6 w-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      {isMobile && (
+        <Button
+          variant="ghost"
+          className="sidebar-toggle fixed top-20 right-4 z-50 rounded-lg border bg-[#0A1F44] 
+            text-white p-2 shadow-lg"
+          onClick={toggleSidebar}
         >
-          {isSidebarOpen ? (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          ) : (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          )}
-        </svg>
-      </Button>
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isSidebarOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </Button>
+      )}
+
+      {/* Overlay for mobile when sidebar is open */}
+      {isMobile && isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
 
       {/* Sidebar Content */}
       <div
@@ -93,24 +115,21 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
           flex 
           flex-col 
           justify-between 
-           
-          fixed 
-          top-16 
-          left-0 
-          bottom-0 
-          z-50
           transition-transform 
           duration-300 
+          ease-in-out
           ${isMobile 
-            ? (isSidebarOpen 
-              ? 'translate-x-0' 
-              : '-translate-x-full') 
-            : 'translate-x-0'
+            ? `fixed top-16 left-0 bottom-0 z-50 ${
+                isSidebarOpen 
+                  ? 'translate-x-0' 
+                  : '-translate-x-full'
+              }` 
+            : 'relative h-full'
           }
         `}
       >
         <div className="p-2 space-y-1 flex-1">
-          <Button variant="ghost" className="w-full justify-start">
+          <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
             <svg
               className="mr-2 h-5 w-5"
               fill="none"
@@ -126,7 +145,7 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
             </svg>
             Templates
           </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
             <svg 
               className="mr-2 h-5 w-5" 
               fill="none" 
@@ -148,7 +167,7 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
             </svg>
             Design & formatting
           </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
             <svg 
               className="mr-2 h-5 w-5" 
               fill="none" 
@@ -164,7 +183,7 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
             </svg>
             Add section
           </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
             <svg 
               className="mr-2 h-5 w-5" 
               fill="none" 
@@ -180,7 +199,7 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
             </svg>
             Spell check
           </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
             <svg 
               className="mr-2 h-5 w-5" 
               fill="none" 
@@ -203,19 +222,18 @@ const Download_Sidebar = ({resumeId, resumeInfo}) => {
           title: resumeInfo?.firstName+" "+resumeInfo?.lastName+" resume",
         }}
         onClick={() => console.log("shared successfully!")}
-      > <Button variant="ghost" className="w-full justify-start">
+      > <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
       <Link/>
       Share
     </Button>
       </RWebShare> */}
-          <Button variant="ghost" className="w-full justify-start">
-            <Download/>
-           Download
+          <Button variant="ghost" className="w-full justify-start text-white hover:bg-white/10">
+            <Download className="mr-2 h-5 w-5"/>
+            Download
           </Button>
         </div>
       </div>
     </div>
-   
   );
 };
 
