@@ -47,7 +47,7 @@ function ViewResume() {
                         {/* Main Content */}
                         <div className="flex-1 flex justify-center items-center">
                             <div className="p-3 w-full md:w-1/2 max-w-2xl overflow-y-auto ">
-                                <Download_ResumePreview />
+                                {/* <Download_ResumePreview /> */}
                             </div>
                         </div>
                     </div>
