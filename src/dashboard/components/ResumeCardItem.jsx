@@ -74,19 +74,20 @@ const ResumeCardItem = ({ resume, refreshData ,resumeList,setResumeList}) => {
             {resume.title}
           </h3>
           <p className="text-gray-500 text-xs sm:text-sm">
-            Edited 3 hours ago
+            Created At:{" "}
+            {resume.createdAt ? new Date(resume.createdAt).toLocaleDateString() : 'N/A'}
           </p>
         </div>
         
         {/* Action buttons - Mobile: Stacked, Desktop: Horizontal */}
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-start sm:items-center">
+        {/* <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-start sm:items-center">
           <button className="text-gray-400 px-3 py-1.5 sm:py-1 rounded-md border border-gray-200 text-xs sm:text-sm hover:bg-gray-50 transition-colors w-full sm:w-auto text-center">
             Add a label
           </button>
           <button className="p-1.5 hover:bg-gray-100 rounded-md transition-colors self-end sm:self-auto">
             <Edit3 className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Action Buttons Section */}
