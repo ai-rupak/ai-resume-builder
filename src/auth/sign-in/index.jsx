@@ -15,6 +15,8 @@ const AuthPage = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const baseURL = import.meta.env.VITE_BACKEND_URL;
+
 
   useEffect(() => {
     if (user && !isLoading) {
@@ -83,7 +85,7 @@ const AuthPage = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href =  'https://ai-resume-backend-hdci.onrender.com/api/auth/google';
+    window.location.href =  `${baseURL}/api/auth/google`;
   };
 
   const toggleMode = () => {

@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const baseURL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const initAuth = async () => {
@@ -28,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUserData = async (token) => {
     try {
-      const response = await axios.get('https://ai-resume-backend-hdci.onrender.com//api/auth/user', {
+      const response = await axios.get(`${baseURL}/api/auth/user`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUser(response.data);
