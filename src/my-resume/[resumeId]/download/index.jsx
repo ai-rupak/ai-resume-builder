@@ -191,12 +191,12 @@ function ViewResume() {
                 {/* Mobile download button */}
                 {isMobile && (
                   <div className="mt-4 flex justify-center">
-                    <Button 
+                    {/* <Button 
                       onClick={handleDownload}
                       className="bg-blue-600 hover:bg-blue-700"
                     >
                       Download Resume
-                    </Button>
+                    </Button> */}
                   </div>
                 )}
               </div>
