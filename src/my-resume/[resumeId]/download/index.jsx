@@ -55,7 +55,40 @@ function ViewResume() {
         //         </div>
         //     </div>
         // </ResumeInfoContext.Provider>
-        <div><Header /></div>
+        // <div><Header /></div>
+        <div className='min-h-screen bg-gray-50'>
+        <h1>Testing Components...</h1>
+        <Header />
+        
+        {/* Test Button first */}
+        {Button ? (
+            <Button>Test Button</Button>
+        ) : (
+            <p>❌ Button is undefined</p>
+        )}
+        
+        {/* Test Context */}
+        {ResumeInfoContext ? (
+            <ResumeInfoContext.Provider value={{resumeInfo: null, setResumeInfo: () => {}}}>
+                <p>✅ Context works</p>
+            </ResumeInfoContext.Provider>
+        ) : (
+            <p>❌ ResumeInfoContext is undefined</p>
+        )}
+        
+        {/* Test Custom Components */}
+        {Download_Sidebar ? (
+            <p>✅ Download_Sidebar is defined</p>
+        ) : (
+            <p>❌ Download_Sidebar is undefined</p>
+        )}
+        
+        {Download_ResumePreview ? (
+            <p>✅ Download_ResumePreview is defined</p>
+        ) : (
+            <p>❌ Download_ResumePreview is undefined</p>
+        )}
+    </div>
     )
 
 }
