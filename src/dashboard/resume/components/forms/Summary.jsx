@@ -16,7 +16,7 @@ function Summary({ enabledNext }) {
 
   const [summary, setSummary] = useState('');
   const [loading, setLoading] = useState(false);
-  const [aiGeneratedSummaryList, setAiGeneratedSummaryList] = useState(null);
+  const [aiGeneratedSummaryList, setAiGeneratedSummaryList] = useState([]);
 
   // Initial data fetch
   useEffect(() => {

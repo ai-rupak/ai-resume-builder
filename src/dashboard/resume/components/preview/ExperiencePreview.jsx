@@ -20,11 +20,15 @@ const ExperiencePreview = ({resumeInfo}) => {
         return (
         <div key={index} className='my-5' >
           <h2 className='text-sm font-bold'>{experience?.jobTitle}</h2>
-          <h2 className='text-xs flex justify-between'>{experience?.company},
+          <h2 className='text-xs flex justify-between'>{experience?.company}
             <span>{formatDate(experience?.startDate)} - {experience?.currentlyWorking? 'Present' : formatDate(experience?.endDate)} </span> 
             </h2>
             {/* <p className='text-xs my-2'>{experience?.workSummary} </p> */}
-            <div className='text-xs my-2' dangerouslySetInnerHTML={{__html:experience?.description}}/>
+            <div 
+              className="text-xs my-2 list-disc pl-1.5" 
+              dangerouslySetInnerHTML={{ __html: experience?.description }} 
+            />
+
         </div>
      );
     })}

@@ -13,7 +13,9 @@ import {
 import { toast } from 'react-toastify';
 import { AIChatSession } from './../../../../service/AiModel.js';
 
-const PROMPT = "position title: {positionTitle} . Depends on position title give me 5-7 bullet points for my experience in resume . give me result in HTML format";
+const PROMPT = `You are a resume writer. Given the position title "{positionTitle}", generate 3-4 high-quality, professional resume bullet points in HTML format using <ul> and <li> tags. 
+
+❗️Return ONLY the HTML. Do NOT return JSON or any extra keys like "position_title" or "bullet_points". Just start with <ul>.`;
 
 const RichTextEditor = ({ onRichTextEditorChange, index, value }) => {
   const [editorValue, setEditorValue] = useState(value || '');
@@ -30,26 +32,32 @@ const RichTextEditor = ({ onRichTextEditorChange, index, value }) => {
     onRichTextEditorChange(newValue, 'description', index);
   };
 
-  const GenerateSummaryFromAI = async () => {
-    setLoading(true);
-    try {
-      if (!resumeInfo.Experience[index]?.jobTitle) {
-        toast.error('Please Add Position Title');
-        return;
-      }
-      const prompt = PROMPT.replace('{positionTitle}', resumeInfo.Experience[index].jobTitle);
-      const result = await AIChatSession.sendMessage(prompt);
-      const resp = await result.response.text();
-      const cleanResp = resp.replace('[', '').replace(']', '');
-      setEditorValue(cleanResp);
-      onRichTextEditorChange(cleanResp, 'description', index);
-    } catch (error) {
-      toast.error('Error generating content');
-      console.error(error);
-    } finally {
-      setLoading(false);
+ const GenerateSummaryFromAI = async () => {
+  setLoading(true);
+  try {
+    if (!resumeInfo.experience?.[index]?.jobTitle) {
+      toast.error('Please Add Position Title');
+      return;
     }
-  };
+
+    const prompt = PROMPT.replace('{positionTitle}', resumeInfo.experience[index].jobTitle);
+    const result = await AIChatSession.sendMessage(prompt);
+    const resp = await result.response.text();
+
+    // Extract only the <ul>...</ul> from any extra wrapping
+    const match = resp.match(/<ul[\s\S]*?<\/ul>/);
+    const cleanHtml = match ? match[0] : resp;
+
+    setEditorValue(cleanHtml);
+    onRichTextEditorChange(cleanHtml, 'description', index);
+  } catch (error) {
+    toast.error('Error generating content');
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div>
