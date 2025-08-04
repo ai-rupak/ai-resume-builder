@@ -81,7 +81,7 @@ function PersonalDetail({ enabledNext }) {
 
   if (initialLoading) {
     return (
-      <div className="p-5 shadow-lg border-t-primary border-t-4 mt-10 flex justify-center items-center">
+      <div className="p-5 shadow-lg  mt-10 flex justify-center items-center">
         <LoaderCircle className="animate-spin h-8 w-8" />
       </div>
     );

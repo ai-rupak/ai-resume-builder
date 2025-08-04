@@ -61,7 +61,7 @@ const AddResume = ({type,tip}) => {
     <div className="border-[#092347ee] border rounded-lg p-4 sm:p-6 cursor-pointer group">
       {/* Clickable card to open dialog */}
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-        <div className="w-full sm:w-48 md:w-56 lg:w-64 h-24 sm:h-28 md:h-32 border-[#00C8A0] border bg-[#E8F9F6] rounded-lg flex items-center justify-center group-hover:bg-[#d7f5f0] transition-colors duration-200 flex-shrink-0"
+        <div className="w-full sm:w-48 md:w-56 lg:w-64 h-24 sm:h-28 md:h-32 border-primary border bg-purple-200 rounded-lg flex items-center justify-center group-hover:bg-purple-100 transition-colors duration-200 flex-shrink-0"
          onClick={() => setOpenDialog(true)}>
         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200 shadow-md" >
             <Plus className="w-4 h-4 sm:w-6 sm:h-6 text-white" />

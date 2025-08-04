@@ -17,10 +17,13 @@ function Summary({ enabledNext }) {
   const [summary, setSummary] = useState('');
   const [loading, setLoading] = useState(false);
   const [aiGeneratedSummaryList, setAiGeneratedSummaryList] = useState([]);
+  const [initialLoading, setInitialLoading] = useState(true);
 
   // Initial data fetch
   useEffect(() => {
     if (params?.resumeId) {
+      setInitialLoading(true);
+      
       ResumeApi.getResumeById(params.resumeId)
         .then((response) => {
           const data = response.data?.data || response.data;
@@ -32,6 +35,7 @@ function Summary({ enabledNext }) {
           console.error('Error fetching resume:', error);
         });
     }
+    setInitialLoading(false);
   }, [params?.resumeId]);
 
   // Update context when summary changes
@@ -46,23 +50,31 @@ function Summary({ enabledNext }) {
   }, [summary, setResumeInfo, enabledNext]);
 
   const GenerateSummaryFromAI = async () => {
-    if (!resumeInfo?.jobTitle) {
-      toast.warning('Please enter a job title first');
-      return;
-    }
+  if (!resumeInfo?.jobTitle) {
+    toast.warning('Please enter a job title first');
+    return;
+  }
 
-    setLoading(true);
-    try {
-      const prompt = AI_PROMPT.replace('{jobTitle}', resumeInfo.jobTitle);
-      const result = await AIChatSession.sendMessage(prompt);
-      const parsedResponse = JSON.parse(result.response.text());
+  setLoading(true);
+  try {
+    const prompt = AI_PROMPT.replace('{jobTitle}', resumeInfo.jobTitle);
+    const result = await AIChatSession.sendMessage(prompt);
+    const text = await result.response.text(); // ✅ wait for text
+    const parsedResponse = JSON.parse(text);
+
+    if (Array.isArray(parsedResponse)) {
       setAiGeneratedSummaryList(parsedResponse);
-    } catch (error) {
-      toast.error('Error generating AI suggestions');
-    } finally {
-      setLoading(false);
+    } else {
+      throw new Error("Unexpected AI response format.");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error('Error generating AI suggestions');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   const onSave = async (e) => {
     e.preventDefault();
@@ -80,6 +92,14 @@ function Summary({ enabledNext }) {
     }
   };
 
+    if (initialLoading) {
+      return (
+        <div className="p-5 shadow-lg  mt-10 flex justify-center items-center">
+          <LoaderCircle className="animate-spin h-8 w-8" />
+        </div>
+      );
+    }
+  
   return (
     <div>
       <div className=" mt-10">
@@ -117,7 +137,7 @@ function Summary({ enabledNext }) {
         </form>
       </div>
 
-      {aiGeneratedSummaryList && (
+      {Array.isArray(aiGeneratedSummaryList)  && (
         <div className="my-5">
           <h2 className="font-bold text-lg">Suggestions</h2>
           {aiGeneratedSummaryList?.map((item, index) => (
