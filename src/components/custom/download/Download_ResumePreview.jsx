@@ -103,11 +103,11 @@ const Download_ResumePreview = () => {
                 <SummaryPreview resumeInfo={resumeInfo} />
             </div>
             <div className="resume-section">
+                <EducationalPreview resumeInfo={resumeInfo} />
                 <ExperiencePreview resumeInfo={resumeInfo} />
-                <ProjectsPreview resumeInfo={resumeInfo} />
             </div>
             <div className="resume-section">
-                <EducationalPreview resumeInfo={resumeInfo} />
+                <ProjectsPreview resumeInfo={resumeInfo} />
                 <SkillsPreview resumeInfo={resumeInfo} />
             </div>
         </div>
