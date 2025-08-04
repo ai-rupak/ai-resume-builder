@@ -59,8 +59,17 @@ function Summary({ enabledNext }) {
   try {
     const prompt = AI_PROMPT.replace('{jobTitle}', resumeInfo.jobTitle);
     const result = await AIChatSession.sendMessage(prompt);
-    const text = await result.response.text(); // ✅ wait for text
-    const parsedResponse = JSON.parse(text);
+
+   const text = await result.response.text();
+
+    // Try to extract a JSON array from the text using regex
+    const jsonMatch = text.match(/\[.*?\]/s);
+
+    if (!jsonMatch) {
+      throw new Error("AI response did not contain a valid array.");
+    }
+
+    const parsedResponse = JSON.parse(jsonMatch[0]);
 
     if (Array.isArray(parsedResponse)) {
       setAiGeneratedSummaryList(parsedResponse);
