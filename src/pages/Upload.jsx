@@ -209,7 +209,7 @@ const Upload = () => {
       <section className="main-section py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-8 sm:mb-10 lg:mb-12 mt-5">
+          <div className="text-center mb-8 sm:mb-10 lg:mb-12 mt-10 sm:mt-15">
             <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200 mb-4 sm:mb-6">
               <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600 mr-2" />
               <span className="text-xs sm:text-sm font-medium text-gray-700">AI-Powered Resume Analysis</span>
