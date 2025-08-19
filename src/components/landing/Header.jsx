@@ -46,10 +46,12 @@ export const Header = () => {
 
   // Enhanced navigation items with icons
   const navigationItems = [
+    
+    { href: "#ats", label: "ATS", icon: null },
     { href: "#features", label: "Features", icon: null },
-    { href: "#templates", label: "Templates", icon: null },
+    { href: "#templates", label: "Templates", icon: null }, 
     { href: "#how-it-works", label: "How It Works", icon: null },
-    { href: "#testimonials", label: "Reviews", icon: null },
+    // { href: "#testimonials", label: "Reviews", icon: null },
   ];
 
   const handleNavClick = (href) => {
