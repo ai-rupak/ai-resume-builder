@@ -5,13 +5,13 @@ const LoadingScreen = ({
   message = "Loading...", 
   showProgress = false, 
   progress = 0,
-  tips = [
-    "Did you know? You can use keyboard shortcuts to navigate faster!",
-    "Tip: Try using dark mode for a better viewing experience.",
-    "Fun fact: Our servers process thousands of requests per second.",
-    "Tip: You can bookmark your favorite pages for quick access.",
-    "Did you know? We're constantly improving our performance."
-  ]
+  // tips = [
+  //   "Did you know? You can use keyboard shortcuts to navigate faster!",
+  //   "Tip: Try using dark mode for a better viewing experience.",
+  //   "Fun fact: Our servers process thousands of requests per second.",
+  //   "Tip: You can bookmark your favorite pages for quick access.",
+  //   "Did you know? We're constantly improving our performance."
+  // ]
 }) => {
   const [currentTip, setCurrentTip] = useState(0);
   const [dots, setDots] = useState(0);
@@ -24,15 +24,15 @@ const LoadingScreen = ({
     return () => clearInterval(interval);
   }, []);
 
-  // Cycle through tips
-  useEffect(() => {
-    if (tips.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentTip(prev => (prev + 1) % tips.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [tips.length]);
+  // // Cycle through tips
+  // useEffect(() => {
+  //   if (tips.length > 1) {
+  //     const interval = setInterval(() => {
+  //       setCurrentTip(prev => (prev + 1) % tips.length);
+  //     }, 3000);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [tips.length]);
 
   const renderLoadingDots = () => {
     return '.'.repeat(dots);
@@ -42,7 +42,7 @@ const LoadingScreen = ({
     <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 z-50">
       <div className="flex flex-col items-center gap-6 max-w-md mx-auto p-8">
         {/* Logo/Brand Area */}
-        <BrainIcon className="w-16 h-16 text-blue-600 mb-4 " />
+        {/* <BrainIcon className="w-16 h-16 text-blue-600 mb-4 " /> */}
         {/* <div className="mb-4">
           <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
             <div className="w-10 h-10 bg-white rounded-lg opacity-90"></div>
@@ -89,13 +89,13 @@ const LoadingScreen = ({
         </div>
 
         {/* Loading Tips */}
-        {tips.length > 0 && (
+        {/* {tips.length > 0 && (
           <div className="text-center min-h-[3rem] flex items-center">
             <p className="text-sm text-gray-500 italic transition-opacity duration-500">
               {tips[currentTip]}
             </p>
           </div>
-        )}
+        )} */}
 
         {/* Decorative Elements */}
         <div className="flex gap-2 mt-4">
